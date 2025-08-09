@@ -1,0 +1,229 @@
+%-------------------------
+% Resume in Latex
+% Author : Conner Jordan (modified from original template)
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{graphicx}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+
+\RequirePackage{tikz}
+\RequirePackage{xcolor}
+
+\definecolor{cvblue}{HTML}{0E5484}
+\definecolor{black}{HTML}{130810}
+\definecolor{darkcolor}{HTML}{0F4539}
+\definecolor{cvgreen}{HTML}{3BD80D}
+\definecolor{taggreen}{HTML}{00E278}
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\colorlet{name}{black}
+\colorlet{tagline}{darkcolor}
+\colorlet{heading}{darkcolor}
+\colorlet{headingrule}{cvblue}
+\colorlet{accent}{darkcolor}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+
+\usepackage{CormorantGaramond}
+\usepackage{charter}
+
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+\urlstyle{same}
+
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-8pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\titlerule \vspace{-8pt}]
+
+\pdfgentounicode=1
+
+% chktex-file 46
+% chktex 1
+% chktex 8
+% chktex 36
+
+\newcommand{\resumeItem}[1]{
+  \item\small{#1}
+}
+
+\newcommand{\classesList}[4]{
+    \item\small{
+        {#1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textit{#2} \\
+      \textit{#3} & \textit{#4} \\
+    \end{tabular*}\vspace{-4pt}
+}
+
+\newcommand{\resumeSingleSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{\large#1} & \textbf{\small #2} \\
+      
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-6pt}}
+
+\newcommand\sbullet[1][.5]{\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}}
+
+\usepackage[margin=0.4in, top=0.08in]{geometry}
+
+\begin{document}
+
+%---------%
+% Heading %
+%---------%
+
+\begin{center}
+  {\Huge \textbf{Conner Jordan}}\\[4pt]
+  {\Large Software Engineer}\\[4pt]
+  \href{tel:+18059759793}{
+    \raisebox{-0.05\height}{\faPhone\ +1 (805) 975-9793}} ~ | ~
+  \href{mailto:connercharlesjordan@gmail.com}{
+    \raisebox{-0.15\height}{\faEnvelope\ connercharlesjordan@gmail.com}} ~ | ~
+  \raisebox{-0.15\height}{\faMapMarker\ San Luis Obispo, CA} \\
+  \href{https://www.linkedin.com/in/conner-jordan-4b268514a/}{
+    \raisebox{-0.15\height}{\faLinkedin\ linkedin.com/in/conner-jordan-4b268514a}} ~ | ~
+  \href{https://github.com/cjordan223}{
+    \raisebox{-0.15\height}{\faGithub\ github.com/cjordan223}} ~ | ~
+  \href{https://connerjordan.com/}{
+    \raisebox{-0.15\height}{\faGlobe\ connerjordan.com}}
+\end{center}
+
+\vspace{-12pt}
+
+%-----------PROFESSIONAL SUMMARY-----------
+\section{PROFESSIONAL SUMMARY}
+Highly motivated Software and Security Engineer with a strong software engineering background, securing and automating workflows across 2,700 Mac and Windows endpoints. Spearheaded vulnerability remediation efforts that halved critical/high exploitable vulnerabilities (from ~10K to ~5K), developing CLI tools to streamline tagging and auditing and saving over 100+ hours monthly. Routinely coordinate across dozens of IT departments (InfraOps, Middleware, Service Desk, Cloud Security, IAM) to route and sequence SecOps initiatives, driving impactful automation recognized by C-suite with a contract extension.
+\vspace{-10pt}
+
+%-----------EDUCATION-----------
+\section{EDUCATION}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {California State University - Monterey Bay}{December 2024}
+      {B.S., Computer Science}{\vspace{4pt}}
+      {\small\textit{Capstone Award for Innovation (2024)}}{\vspace{2pt}}
+  \resumeSubHeadingListEnd
+\vspace{-14pt}
+
+%-----------TECHNICAL SKILLS-----------
+\section{TECHNICAL SKILLS}
+\begin{itemize}[leftmargin=0in, label={}]
+\small{\item{
+\textbf{Programming Languages:} Python, TypeScript, Java, C/C++, SQL, Swift, PowerShell, Bash \\
+\textbf{Frontend:} React.js, Vue.js, Tailwind CSS, MUI, Vite, Next.js \\
+\textbf{Backend:} Node.js, Express.js, Django, Flask, Spring Boot, FastAPI, .NET \\
+\textbf{Cloud \& DevOps:} AWS, Google Cloud Platform, Azure, Docker, Kubernetes, Lambda, Ansible, Terraform, CI/CD Pipelines, IaaS, PaaS \\
+\textbf{AI \& LLM Tools:} Claude Code, LangChain, LM Studio, Ollama, MLX, Vector Databases (Chroma, Pinecone), Prompt Engineering \\
+\textbf{Automation \& Productivity:} Git, Postman, Selenium, GitHub Copilot, Raycast, PowerToys, Crontab, Shell Scripting \\
+\textbf{Security \& Operating Systems:} macOS, Windows, Linux, Rapid7, CrowdStrike, Jamf, BigFix, ServiceNow, Vulnerability Management \\
+\textbf{Enterprise Applications:} Tableau, Salesforce, Snowflake, Databricks, Zendesk, Adobe Creative Suite, UKG, SaaS platforms \\
+\textbf{Databases:} MySQL, PostgreSQL, MongoDB, DynamoDB, Snowflake, Databricks \\
+}}
+\end{itemize}
+\vspace{-14pt}
+
+%-----------EXPERIENCE-----------
+\section{WORK EXPERIENCE}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {University of California}{Oakland, CA (Remote)}
+      {Security Engineer}{March 2025 - Present}
+      \resumeItemListStart
+        \resumeItem{Helped develop standardized workflows and automation for UC-wide vulnerability detection and mitigation across MacOS and Windows endpoints, supporting a systemwide cybersecurity and compliance initiative.}
+        \resumeItem{Investigated security risks in fringe and unmanaged applications, writing custom remediation scripts and policies to address non-standard vulnerabilities, leveraging innovative thinking and advanced troubleshooting skills.}
+        \resumeItem{Built a unified dashboard integrating Rapid7, Jamf, BigFix, and ServiceNow (SaaS), improving threat visibility and enabling more efficient SecOps response through real-time database and asset data aggregation.}
+        \resumeItem{Automated asset tracking and compliance monitoring through cross-platform scripting (Python, Bash, PowerShell), reducing manual workload and improving coverage across multiple operating systems.}
+        \resumeItem{Coordinated with IT teams to align endpoint security practices with compliance standards, streamlining reporting, supporting project management efforts, and improving interdepartmental collaboration in a cloud computing environment.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Great Wolf Resorts}{Chicago Corporate Office (Remote)}
+      {Security Support Engineer}{May 2023 - March 2025}
+      \resumeItemListStart
+        \resumeItem{Developed and maintained automation scripts for hybrid Azure tenant management, deploying updates for Carbon Black agents, Citrix patching, and BitLocker device enforcement, resulting in seamless operations and zero downtime across 10,000+ endpoints.}
+        \resumeItem{Automated security certificate deployments using CrowdStrike RTR and PowerShell, preventing service disruptions for critical teams and saving an estimated 200+ hours in manual interventions annually.}
+        \resumeItem{Engineered a PowerShell interface integrated with Microsoft Graph API for managing distribution lists of 10,000+ users, eliminating human error and reducing annual manual workload by 500+ hours.}
+        \resumeItem{Built SQL log query frameworks in Rapid7 with Pandas/NumPy analytics pipelines, creating dynamic visualizations to detect suspicious behavior and inform executive decisions on security posture.}
+        \resumeItem{Led security awareness campaigns via KnowBe4, developing custom Python tools to analyze phishing simulation data, transforming raw metrics into actionable insights that improved employee compliance rates by 25\%.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Simple.biz}{Durham, NC (Remote)}
+      {Freelance Web Developer}{August 2022 - May 2023}
+      \resumeItemListStart
+        \resumeItem{Delivered production-ready websites with optimized performance and SEO enhancements (e.g., alt tags, meta descriptions), incorporating automation scripts for build processes that improved search rankings and client visibility.}
+        \resumeItem{Implemented WCAG/ADA compliance guidelines through automated testing tools like Selenium, ensuring inclusive web applications and boosting usability scores while reducing accessibility-related issues.}
+        \resumeItem{Conducted cross-browser/device compatibility testing with scripted automation, resolving discrepancies and achieving a 30\% decrease in user-reported issues across platforms.}
+      \resumeItemListEnd  
+
+  \resumeSubHeadingListEnd
+\vspace{-10pt}
+
+
+%-----------CERTIFICATIONS-----------
+\section{CERTIFICATIONS}
+ \begin{itemize}[leftmargin=0in, label={}]
+    \small{\item{
+     \textbf{AWS Certified Cloud Practitioner} \hfill \textit{January 2025}
+    }}
+ \end{itemize}
+\vspace{-12pt}
+
+\end{document}

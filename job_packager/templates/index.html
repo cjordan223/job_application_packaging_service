@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Packaging Tool</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .upload-section {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .job-section {
+            background-color: #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-running {
+            background-color: #28a745;
+        }
+        .status-error {
+            background-color: #dc3545;
+        }
+        .loading {
+            display: none;
+        }
+        .result-section {
+            display: none;
+            background-color: #d4edda;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center mb-4">
+                    <i class="bi bi-briefcase"></i>
+                    Job Packaging Tool
+                </h1>
+                <p class="text-center text-muted">
+                    Upload your resume and cover letter templates, then generate tailored documents for any job application.
+                </p>
+            </div>
+        </div>
+
+        <!-- Ollama Status Check -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <span id="ollama-status-indicator" class="status-indicator status-error"></span>
+                            Ollama Status
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <p id="ollama-status-text">Checking Ollama connection...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upload Templates Section -->
+        <div class="row">
+            <div class="col-12">
+                <div class="upload-section">
+                    <h3><i class="bi bi-upload"></i> Upload Templates</h3>
+                    <p class="text-muted">Upload your resume and cover letter templates (PDF format only)</p>
+                    
+                    <form id="uploadForm" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="resume" class="form-label">Resume Template (PDF)</label>
+                                    <input type="file" class="form-control" id="resume" name="resume" accept=".pdf">
+                                    <div class="form-text">Upload your base resume template</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="cover_letter" class="form-label">Cover Letter Template (PDF)</label>
+                                    <input type="file" class="form-control" id="cover_letter" name="cover_letter" accept=".pdf">
+                                    <div class="form-text">Upload your base cover letter template</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="loading" id="upload-loading">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Uploading...
+                            </span>
+                            <span id="upload-text">Upload Templates</span>
+                        </button>
+                    </form>
+                    
+                    <div id="upload-result" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Process Job Section -->
+        <div class="row">
+            <div class="col-12">
+                <div class="job-section">
+                    <h3><i class="bi bi-gear"></i> Process Job Application</h3>
+                    <p class="text-muted">Enter job details to generate tailored resume and cover letter</p>
+                    
+                    <form id="jobForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="job_title" class="form-label">Job Title *</label>
+                                    <input type="text" class="form-control" id="job_title" name="job_title" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="company_name" class="form-label">Company Name *</label>
+                                    <input type="text" class="form-control" id="company_name" name="company_name" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="job_description" class="form-label">Job Description *</label>
+                            <textarea class="form-control" id="job_description" name="job_description" rows="8" required 
+                                      placeholder="Paste the job description here..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">
+                            <span class="loading" id="process-loading">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Processing...
+                            </span>
+                            <span id="process-text">Generate Tailored Documents</span>
+                        </button>
+                    </form>
+                    
+                    <div id="job-result" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="row">
+            <div class="col-12">
+                <div id="result-section" class="result-section">
+                    <h3><i class="bi bi-check-circle"></i> Generated Documents</h3>
+                    <div id="result-content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Check Ollama status on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkOllamaStatus();
+            
+            // Set up form submissions
+            document.getElementById('uploadForm').addEventListener('submit', handleUpload);
+            document.getElementById('jobForm').addEventListener('submit', handleJobProcessing);
+        });
+
+        function checkOllamaStatus() {
+            fetch('/check_ollama')
+                .then(response => response.json())
+                .then(data => {
+                    const indicator = document.getElementById('ollama-status-indicator');
+                    const statusText = document.getElementById('ollama-status-text');
+                    
+                    if (data.status === 'running') {
+                        indicator.className = 'status-indicator status-running';
+                        statusText.textContent = 'Ollama is running and ready to use.';
+                    } else {
+                        indicator.className = 'status-indicator status-error';
+                        statusText.textContent = data.message || 'Ollama is not running. Please start Ollama to use cover letter generation.';
+                    }
+                })
+                .catch(error => {
+                    const indicator = document.getElementById('ollama-status-indicator');
+                    const statusText = document.getElementById('ollama-status-text');
+                    indicator.className = 'status-indicator status-error';
+                    statusText.textContent = 'Error checking Ollama status: ' + error.message;
+                });
+        }
+
+        function handleUpload(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const loading = document.getElementById('upload-loading');
+            const text = document.getElementById('upload-text');
+            const result = document.getElementById('upload-result');
+            
+            // Show loading
+            loading.style.display = 'inline';
+            text.style.display = 'none';
+            result.innerHTML = '';
+            
+            fetch('/upload_templates', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    result.innerHTML = `<div class="alert alert-success">${data.success}</div>`;
+                } else {
+                    result.innerHTML = `<div class="alert alert-danger">${data.error}</div>`;
+                }
+            })
+            .catch(error => {
+                result.innerHTML = `<div class="alert alert-danger">Upload failed: ${error.message}</div>`;
+            })
+            .finally(() => {
+                loading.style.display = 'none';
+                text.style.display = 'inline';
+            });
+        }
+
+        function handleJobProcessing(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const loading = document.getElementById('process-loading');
+            const text = document.getElementById('process-text');
+            const result = document.getElementById('job-result');
+            const resultSection = document.getElementById('result-section');
+            const resultContent = document.getElementById('result-content');
+            
+            // Show loading
+            loading.style.display = 'inline';
+            text.style.display = 'none';
+            result.innerHTML = '';
+            resultSection.style.display = 'none';
+            
+            fetch('/process_job', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    result.innerHTML = `<div class="alert alert-success">${data.success}</div>`;
+                    
+                    // Show results section
+                    const keywords = data.keywords ? data.keywords.join(', ') : '';
+                    resultContent.innerHTML = `
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>Extracted Keywords</h5>
+                                <p class="text-muted">${keywords}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Download Documents</h5>
+                                <div class="d-grid gap-2">
+                                    <a href="/download/${data.resume_pdf.split('/').pop()}" class="btn btn-outline-primary">
+                                        <i class="bi bi-download"></i> Download Tailored Resume
+                                    </a>
+                                    <a href="/download/${data.cover_pdf.split('/').pop()}" class="btn btn-outline-primary">
+                                        <i class="bi bi-download"></i> Download Cover Letter
+                                    </a>
+                                    <a href="/download/${data.zip_file.split('/').pop()}" class="btn btn-primary">
+                                        <i class="bi bi-file-zip"></i> Download All (ZIP)
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    resultSection.style.display = 'block';
+                } else {
+                    result.innerHTML = `<div class="alert alert-danger">${data.error}</div>`;
+                }
+            })
+            .catch(error => {
+                result.innerHTML = `<div class="alert alert-danger">Processing failed: ${error.message}</div>`;
+            })
+            .finally(() => {
+                loading.style.display = 'none';
+                text.style.display = 'inline';
+            });
+        }
+    </script>
+</body>
+</html>

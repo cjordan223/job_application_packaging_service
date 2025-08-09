@@ -1,0 +1,116 @@
+%-------------------------
+% Cover Letter in Latex
+% Based on Conner Jordan's Resume Template
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage[hidelinks]{hyperref}
+\usepackage[english]{babel}
+\usepackage{fontawesome5}
+
+\usepackage{CormorantGaramond}
+\usepackage{charter}
+
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+\urlstyle{same}
+
+% Color Definitions
+\definecolor{cvblue}{rgb}{0.054, 0.329, 0.518}
+\definecolor{black}{rgb}{0.075, 0.031, 0.063}
+\definecolor{darkcolor}{rgb}{0.059, 0.271, 0.224}
+\definecolor{SlateGrey}{rgb}{0.180, 0.180, 0.180}
+\definecolor{LightGrey}{rgb}{0.400, 0.400, 0.400}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Custom Commands
+\newcommand{\companyName}[1]{\textbf{\large#1}}
+\newcommand{\contactInfo}[4]{
+    \begin{center}
+    {\Huge \textbf{#1}}\\[4pt]
+    {\Large #2}\\[8pt]
+    \href{mailto:#3}{
+        \raisebox{-0.15\height}{\faEnvelope\ #3}} ~ | ~
+    \raisebox{-0.15\height}{\faMapMarker\ #4}
+    \end{center}
+}
+
+\begin{document}
+
+% Full Header
+\begin{center}
+  {\Huge \textbf{Conner Jordan}}\\[4pt]
+  {\Large Software Engineer}\\[4pt]
+  \href{tel:+18059759793}{
+    \raisebox{-0.05\height}{\faPhone\ +1 (805) 975-9793}} ~ | ~
+  \href{mailto:connercharlesjordan@gmail.com}{
+    \raisebox{-0.15\height}{\faEnvelope\ connercharlesjordan@gmail.com}} ~ | ~
+  \raisebox{-0.15\height}{\faMapMarker\ San Luis Obispo, CA} \\
+  \href{https://www.linkedin.com/in/conner-jordan-4b268514a/}{
+    \raisebox{-0.15\height}{\faLinkedin\ linkedin.com/in/conner-jordan-4b268514a}} ~ | ~
+  \href{https://github.com/cjordan223}{
+    \raisebox{-0.15\height}{\faGithub\ github.com/cjordan223}} ~ | ~
+  \href{https://connerjordan.com/}{
+    \raisebox{-0.15\height}{\faGlobe\ connerjordan.com}}
+\end{center}
+
+\vspace{16pt}
+
+% Date
+\begin{flushright}
+\today
+\end{flushright}
+
+% Hiring Manager Details
+
+\vspace{26pt}
+
+% Salutation
+\noindent
+Hello [Company Name] Team!
+
+\vspace{16pt}
+
+% Paragraph 1: Introduction
+I am writing to express my strong interest in the [Position Name] position at [Company Name]. With my background in [Your Field/Area of Expertise], I am excited about the opportunity to contribute to [mention something specific about the company, e.g., its mission, products, or values].
+
+\vspace{16pt}
+
+% Paragraph 2: Experience and Achievements
+In my previous role at [Previous Company], I [describe a key responsibility or achievement]. My experience in [Skill 1], [Skill 2], and [Skill 3] aligns with the requirements of this role. Some relevant accomplishments include:
+\begin{itemize}
+    \item [Achievement 1: Describe a quantifiable achievement.]
+    \item [Achievement 2: Describe another relevant achievement.]
+    \item [Achievement 3: Describe a third achievement that showcases your skills.]
+\end{itemize}
+
+\vspace{16pt}
+
+% Paragraph 3: Technical Skills and Cultural Fit
+I am particularly drawn to [Company Name]'s commitment to [mention a company value or aspect, e.g., innovation, collaboration, customer focus]. My experience has prepared me to [explain how you fit into their culture or can contribute to their goals]. I am proficient with [mention relevant tools or technologies, e.g., Python, React, AWS].
+
+\vspace{16pt}
+
+% Closing
+I am eager to discuss how my skills and experience can help [Company Name] achieve its goals. Thank you for your time and consideration. I look forward to hearing from you soon.
+\vspace{16pt}
+
+Best regards,\\
+\vspace{16pt}
+
+Conner Jordan
+
+\end{document}
