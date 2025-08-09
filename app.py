@@ -212,9 +212,12 @@ Highlight relevant experiences, skills, and achievements from the resume that ma
 
 def create_pdf(text, filename, title):
     """
-    Create PDF using FPDF.
+    Create PDF using FPDF with proper Unicode handling.
     """
     try:
+        # Clean text to remove problematic Unicode characters
+        cleaned_text = text.encode('latin-1', 'replace').decode('latin-1')
+
         pdf = FPDF()
         pdf.add_page()
         pdf.set_font("Arial", size=12)
@@ -226,7 +229,7 @@ def create_pdf(text, filename, title):
 
         # Add content
         pdf.set_font("Arial", size=12)
-        lines = text.split('\n')
+        lines = cleaned_text.split('\n')
         for line in lines:
             if line.strip():
                 # Handle bold sections
@@ -414,4 +417,4 @@ def check_ollama():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='127.0.0.1', port=5001)
+    app.run(debug=True, host='127.0.0.1', port=8000)

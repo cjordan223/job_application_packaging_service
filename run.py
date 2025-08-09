@@ -92,7 +92,7 @@ def main():
     os.makedirs('uploads/texts', exist_ok=True)
 
     print("\n🚀 Starting Job Packaging Tool...")
-    print("   The application will be available at: http://127.0.0.1:5001")
+    print("   The application will be available at: http://127.0.0.1:8000")
     print("   Press Ctrl+C to stop the application")
 
     if not ollama_available:

@@ -53,7 +53,7 @@ A Flask web application that automatically tailors resumes and generates persona
 
 2. **Open your browser** and navigate to:
    ```
-   http://127.0.0.1:5001
+   http://127.0.0.1:8000
    ```
 
 3. **Upload Templates**:
