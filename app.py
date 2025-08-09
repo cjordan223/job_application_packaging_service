@@ -35,7 +35,7 @@ UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'pdf'}
 USER_ID = 'default_user'  # Single user for simplicity
 OLLAMA_URL = 'http://localhost:11434/api/generate'
-OLLAMA_MODEL = 'llama3.2:3b-q4_0'
+OLLAMA_MODEL = 'llama3:8b'  # Updated to use available model
 
 # Ensure upload directory exists
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)

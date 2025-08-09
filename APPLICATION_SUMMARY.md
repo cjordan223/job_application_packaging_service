@@ -43,7 +43,7 @@ job_packager/
 
 ### Prerequisites
 1. **Python 3.8+** installed
-2. **Ollama** running locally with `llama3.2:3b-q4_0` model
+2. **Ollama** running locally with `llama3:8b` model
 
 ### Installation & Running
 ```bash

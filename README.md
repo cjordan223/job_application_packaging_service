@@ -13,7 +13,7 @@ A Flask web application that automatically tailors resumes and generates persona
 ## Prerequisites
 
 1. **Python 3.8+** installed on your system
-2. **Ollama** running locally with a compatible model (e.g., `llama3.2:3b-q4_0`)
+2. **Ollama** running locally with a compatible model (e.g., `llama3:8b`)
 
 ### Installing Ollama
 
@@ -21,7 +21,7 @@ A Flask web application that automatically tailors resumes and generates persona
 2. Install and start Ollama
 3. Pull a compatible model:
    ```bash
-   ollama pull llama3.2:3b-q4_0
+   ollama pull llama3:8b
    ```
 
 ## Installation
@@ -94,7 +94,7 @@ job_packager/
 To change the Ollama model, edit the `OLLAMA_MODEL` variable in `app.py`:
 
 ```python
-OLLAMA_MODEL = 'llama3.2:3b-q4_0'  # Change to your preferred model
+OLLAMA_MODEL = 'llama3:8b'  # Change to your preferred model
 ```
 
 Popular alternatives for Mac M3:
@@ -132,7 +132,7 @@ If you see "Ollama is not running" error:
 
 4. **Pull the model if needed**:
    ```bash
-   ollama pull llama3.2:3b-q4_0
+   ollama pull llama3:8b
    ```
 
 ### PDF Extraction Issues
